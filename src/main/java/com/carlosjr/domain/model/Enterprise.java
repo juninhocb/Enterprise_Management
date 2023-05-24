@@ -1,6 +1,7 @@
 package com.carlosjr.domain.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -46,6 +47,9 @@ public class Enterprise implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 30)
 	private EnterpriseType enterpriseType;
+	
+	@Column(precision = 10, scale = 2)
+	private BigDecimal invoicing;
 
 	public Long getId() {
 		return id;
@@ -101,6 +105,14 @@ public class Enterprise implements Serializable {
 
 	public void setEnterpriseType(EnterpriseType enterpriseType) {
 		this.enterpriseType = enterpriseType;
+	}
+
+	public BigDecimal getInvoicing() {
+		return invoicing;
+	}
+
+	public void setInvoicing(BigDecimal invoicing) {
+		this.invoicing = invoicing;
 	}
 
 	@Override
