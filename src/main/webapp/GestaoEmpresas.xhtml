@@ -1,27 +1,73 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
- 	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 
-<meta charset="UTF-8"/>
-<title>Gestão de Empresas</title>
+	<meta charset="UTF-8" />
+	<title>Gestão de Empresas</title>
 
-<h:outputStylesheet library="algaworks" name="estilo.css" />
+	<h:outputStylesheet library="assets" name="estilo.css" />
 
 </h:head>
 
-<body>
+<h:body>
 	<header>
-		<h:graphicImage library="algaworks" name="logo.png" />
+		<h:graphicImage library="assets" name="logo.png" />
 	</header>
 
-	<h:outputText value="Olá Mundo!" />
-	
-	<p> Testando o framework!!!</p>
-	
-	<footer>
-		Gestão de Empresas "Carlos JR - JSF"
-	</footer>
-</body>
+	<div id="conteudo">
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Razão social: " for="socialName" />
+				<h:inputText id="socialName" value="#{managementEnterpriseController.enterprise.socialName}" />
+
+				<h:outputLabel value="Nome fantasia: " for="fantasyName" />
+				<h:inputText id="fantasyName" value="#{managementEnterpriseController.enterprise.fantasyName}" />
+
+				<h:outputLabel value="Tipo empresa" for="enterpriseType" />
+				<h:selectOneMenu id="enterpriseType" value="#{managementEnterpriseController.enterprise.enterpriseType}" >
+					<f:selectItem itemLabel="Selecione..." />
+					<f:selectItems value="#{managementEnterpriseController.typesEnterprise}"
+						var="type" itemLabel="#{type.description}" itemValue="#{type}"  />
+				</h:selectOneMenu>
+
+				<h:outputLabel />
+				<h:commandButton value="Salvar" actionListener="#{managementEnterpriseController.save}" />
+				
+				<h:outputLabel />
+				<h:commandLink value="Ajuda?" action="#{managementEnterpriseController.help}"/>
+			</h:panelGrid>
+
+			<h:dataTable value="#{[0, 0, 0, 0]}">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Razão social" />
+					</f:facet>
+
+					<h:outputText value="Carlos Softwares, Treinamentos LDTA" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome fantasia" />
+					</f:facet>
+
+					<h:outputText value="CarlosJr" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo Emprsa" />
+					</f:facet>
+
+					<h:outputText value="LDTA" />
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</div>
+
+	<footer> Gestão de Empresas "Carlos JR - JSF" </footer>
+</h:body>
 
 </html>

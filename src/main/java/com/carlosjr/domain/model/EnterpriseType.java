@@ -12,8 +12,8 @@ public enum EnterpriseType {
 	EnterpriseType(String descritpion) {
 		this.description = descritpion;
 	}
-	
-	public String getDescricao() {
+
+	public String getDescription() {
 		return description;
 	}
 
